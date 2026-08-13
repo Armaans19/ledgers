@@ -19,6 +19,7 @@
     --accent-green:#35D399;
     --accent-red:#FF6B6B;
     --accent-amber:#F0B429;
+    --accent-purple:#B388FF;
     --sans:'Inter',-apple-system,sans-serif;
     --mono:'IBM Plex Mono',monospace;
   }
@@ -37,7 +38,6 @@
   button{font-family:inherit;}
   input, select{font-family:var(--sans);}
 
-  /* ---- App shell ---- */
   .topbar{
     position:sticky; top:0; z-index:20;
     background:rgba(11,14,19,0.92);
@@ -57,7 +57,6 @@
 
   main{max-width:640px; margin:0 auto; padding:16px;}
 
-  /* ---- Ticker strip (signature element) ---- */
   .ticker{
     display:flex; gap:0; overflow-x:auto; margin:-16px -16px 16px; padding:10px 16px;
     background:var(--panel); border-bottom:1px solid var(--border);
@@ -75,7 +74,6 @@
   .up{color:var(--accent-green);}
   .down{color:var(--accent-red);}
 
-  /* ---- Cards ---- */
   .card{
     background:var(--panel);
     border:1px solid var(--border);
@@ -85,12 +83,12 @@
   }
   .card-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;}
   .card-title{font-size:13px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em;}
+  .card-note{font-size:12px; color:var(--muted); margin-top:2px;}
   .big-num{font-family:var(--mono); font-size:30px; font-weight:700; letter-spacing:-0.01em;}
   .sub-num{font-family:var(--mono); font-size:13px; color:var(--muted); margin-top:4px;}
 
   .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
 
-  /* ---- Buttons / inputs ---- */
   .btn{
     background:var(--accent-blue); color:#fff; border:none; border-radius:9px;
     padding:11px 16px; font-size:14px; font-weight:600; cursor:pointer;
@@ -104,6 +102,7 @@
   .btn-block{width:100%;}
   .field{margin-bottom:12px;}
   .field label{display:block; font-size:12px; color:var(--muted); margin-bottom:6px; font-weight:500;}
+  .field .hint{font-size:11px; color:var(--muted); margin-top:5px;}
   .field input, .field select, .field textarea{
     width:100%; background:var(--panel-2); border:1px solid var(--border); color:var(--text);
     border-radius:8px; padding:11px 12px; font-size:15px; outline:none;
@@ -112,7 +111,6 @@
   .row{display:flex; gap:10px;}
   .row > *{flex:1;}
 
-  /* ---- Lists ---- */
   .month-group{margin-bottom:18px;}
   .month-header{font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px; display:flex; justify-content:space-between;}
   .txn{
@@ -132,7 +130,6 @@
   .empty-title{font-weight:600; color:var(--text); margin-bottom:4px;}
   .empty-sub{font-size:13px;}
 
-  /* ---- Bottom nav ---- */
   .bottomnav{
     position:fixed; bottom:0; left:0; right:0; z-index:30;
     background:rgba(18,23,31,0.96); backdrop-filter:blur(10px);
@@ -148,7 +145,6 @@
   .navbtn svg{width:20px; height:20px;}
   .navbtn span{font-size:10px; font-weight:600;}
 
-  /* ---- FAB ---- */
   .fab{
     position:fixed; right:18px; bottom:86px; z-index:25;
     width:54px; height:54px; border-radius:50%;
@@ -158,7 +154,6 @@
     display:flex; align-items:center; justify-content:center;
   }
 
-  /* ---- Modal ---- */
   .modal-overlay{
     position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:40;
     display:flex; align-items:flex-end; justify-content:center;
@@ -178,22 +173,31 @@
   }
   .cat-chip.selected{background:var(--accent-blue); border-color:var(--accent-blue); color:#fff;}
 
-  .segmented{display:flex; background:var(--panel-2); border-radius:9px; padding:3px; margin-bottom:16px;}
-  .seg-opt{flex:1; text-align:center; padding:8px 4px; font-size:13px; font-weight:600; border-radius:7px; cursor:pointer; color:var(--muted);}
-  .seg-opt.active{background:var(--accent-blue); color:#fff;}
-
   canvas{max-width:100%;}
   .chart-wrap{position:relative; height:220px; margin-top:8px;}
+  .legend-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:10px; font-size:11px; color:var(--muted);}
+  .legend-item{display:flex; align-items:center; gap:5px;}
+  .legend-swatch{width:9px; height:9px; border-radius:2px; flex-shrink:0;}
+  .legend-swatch.line{border-radius:0; height:2px; width:14px;}
+  .legend-swatch.dashed{background:repeating-linear-gradient(90deg, var(--muted) 0 4px, transparent 4px 7px); height:2px; width:14px;}
 
   .table{width:100%; border-collapse:collapse; font-size:13px;}
   .table th{text-align:left; color:var(--muted); font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:0.04em; padding:6px 8px; border-bottom:1px solid var(--border);}
   .table td{padding:9px 8px; border-bottom:1px solid var(--border); font-family:var(--mono);}
   .table td.label-cell{font-family:var(--sans); font-weight:500;}
 
-  .snap-row{display:flex; align-items:center; justify-content:space-between; padding:10px 4px; border-bottom:1px solid var(--border);}
-  .snap-row:last-child{border-bottom:none;}
-  .snap-date{font-size:13px; font-weight:600;}
-  .snap-total{font-family:var(--mono); font-weight:700;}
+  .snap-card{
+    border:1px solid var(--border); border-radius:10px; padding:12px; margin-bottom:10px; cursor:pointer;
+    background:var(--panel-2);
+  }
+  .snap-card:last-child{margin-bottom:0;}
+  .snap-top{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:6px;}
+  .snap-date{font-size:13px; font-weight:700;}
+  .snap-total{font-family:var(--mono); font-weight:700; font-size:15px;}
+  .snap-delta{font-family:var(--mono); font-size:11.5px; margin-bottom:8px;}
+  .snap-breakdown{display:grid; grid-template-columns:1fr 1fr; gap:6px 14px;}
+  .snap-line{display:flex; align-items:center; justify-content:space-between; font-size:11.5px; color:var(--muted);}
+  .snap-line b{font-family:var(--mono); color:var(--text); font-weight:600;}
 
   .toast{
     position:fixed; bottom:90px; left:50%; transform:translateX(-50%);
@@ -213,6 +217,7 @@
 
   @media (max-width:380px){
     .big-num{font-size:26px;}
+    .snap-breakdown{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -242,29 +247,37 @@
 /* =========================================================
    LEDGER — single-file personal finance tracker
    All data stored locally in this browser via localStorage.
+   Net worth = Stocks + Savings + Roth IRA - Credit Card balance
    ========================================================= */
 
-/* ---------- storage ---------- */
 const STORE_KEY = 'ledger_data_v1';
 const DEFAULT_CATEGORIES = ['Food','Rent','Transport','Subscriptions','Entertainment','Shopping','Health','Other'];
 const CAT_COLORS = ['#4C8DFF','#35D399','#F0B429','#FF6B6B','#B388FF','#37D6E0','#FF9F43','#8A93A3','#F06BB0','#6FCF97'];
 
 function loadData(){
+  let data;
   try{
     const raw = localStorage.getItem(STORE_KEY);
-    if(raw) return JSON.parse(raw);
-  }catch(e){}
-  return { transactions: [], snapshots: [], categories: DEFAULT_CATEGORIES.slice() };
+    data = raw ? JSON.parse(raw) : null;
+  }catch(e){ data = null; }
+  if(!data) data = { transactions: [], snapshots: [], categories: DEFAULT_CATEGORIES.slice() };
+  if(!data.categories) data.categories = DEFAULT_CATEGORIES.slice();
+  if(!data.transactions) data.transactions = [];
+  if(!data.snapshots) data.snapshots = [];
+  // migration: old snapshots used "checking" as an asset. It's now "creditCard", a liability.
+  data.snapshots.forEach(s=>{
+    if(s.creditCard===undefined) s.creditCard = 0;
+    delete s.checking;
+  });
+  return data;
 }
 function saveData(){ localStorage.setItem(STORE_KEY, JSON.stringify(state.data)); }
 
 const state = {
   data: loadData(),
   tab: 'dashboard',
-  chart1: null,
-  chart2: null,
-  chart3: null,
-  analyticsMonth: null // 'YYYY-MM'
+  chart1:null, chart2:null, chart3:null, chart4:null,
+  analyticsMonth: null
 };
 
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
@@ -291,6 +304,9 @@ function showToast(msg){
   const root = document.getElementById('toastRoot');
   root.innerHTML = `<div class="toast">${msg}</div>`;
   setTimeout(()=>{ root.innerHTML=''; }, 2200);
+}
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
 /* ---------- nav icons ---------- */
@@ -319,12 +335,8 @@ function renderNav(){
 }
 
 /* ---------- computations ---------- */
-function txnsForMonth(key){
-  return state.data.transactions.filter(t=>monthKey(t.date)===key);
-}
-function monthTotal(key){
-  return txnsForMonth(key).reduce((s,t)=>s+Number(t.amount),0);
-}
+function txnsForMonth(key){ return state.data.transactions.filter(t=>monthKey(t.date)===key); }
+function monthTotal(key){ return txnsForMonth(key).reduce((s,t)=>s+Number(t.amount),0); }
 function lastNMonthKeys(n){
   const arr=[]; const now = new Date();
   for(let i=n-1;i>=0;i--){
@@ -333,15 +345,32 @@ function lastNMonthKeys(n){
   }
   return arr;
 }
-function latestSnapshot(){
-  const s = state.data.snapshots.slice().sort((a,b)=>a.date.localeCompare(b.date));
-  return s.length ? s[s.length-1] : null;
+function sortedSnapshots(){ return state.data.snapshots.slice().sort((a,b)=>a.date.localeCompare(b.date)); }
+function latestSnapshot(){ const s = sortedSnapshots(); return s.length ? s[s.length-1] : null; }
+function prevSnapshot(){ const s = sortedSnapshots(); return s.length>1 ? s[s.length-2] : null; }
+function snapTotal(s){ return (s.stockPortfolio||0)+(s.savings||0)+(s.rothIRA||0) - (s.creditCard||0); }
+
+/* simple linear regression: points = [{x:number, y:number}] */
+function linearRegression(points){
+  const n = points.length;
+  if(n===0) return {slope:0, intercept:0};
+  const sumX = points.reduce((s,p)=>s+p.x,0);
+  const sumY = points.reduce((s,p)=>s+p.y,0);
+  const sumXY = points.reduce((s,p)=>s+p.x*p.y,0);
+  const sumXX = points.reduce((s,p)=>s+p.x*p.x,0);
+  const denom = (n*sumXX - sumX*sumX);
+  if(denom===0) return {slope:0, intercept: sumY/n};
+  const slope = (n*sumXY - sumX*sumY)/denom;
+  const intercept = (sumY - slope*sumX)/n;
+  return {slope, intercept};
 }
-function prevSnapshot(){
-  const s = state.data.snapshots.slice().sort((a,b)=>a.date.localeCompare(b.date));
-  return s.length>1 ? s[s.length-2] : null;
+
+/* net worth value as of (or most recently before) a given date; carries forward last known snapshot */
+function netWorthAsOf(dateStr){
+  const snaps = sortedSnapshots().filter(s=>s.date<=dateStr);
+  if(snaps.length===0) return null;
+  return snapTotal(snaps[snaps.length-1]);
 }
-function snapTotal(s){ return (s.stockPortfolio||0)+(s.savings||0)+(s.rothIRA||0)+(s.checking||0); }
 
 /* ================= DASHBOARD ================= */
 function renderDashboard(){
@@ -351,7 +380,7 @@ function renderDashboard(){
   const thisTotal = monthTotal(thisKey);
   const prevTotal = monthTotal(prevKey);
   const delta = prevTotal ? ((thisTotal-prevTotal)/prevTotal*100) : (thisTotal>0?100:0);
-  const deltaUp = delta > 0; // spending up = bad, shown red
+  const deltaUp = delta > 0;
 
   const latest = latestSnapshot();
   const prev = prevSnapshot();
@@ -378,6 +407,10 @@ function renderDashboard(){
       <div class="ticker-item">
         <div class="ticker-label">NW Change</div>
         <div class="ticker-value ${nwDelta===null?'':(nwDelta>=0?'up':'down')}">${nwDelta===null?'—':(nwDelta>=0?'▲ ':'▼ ')+Math.abs(nwDelta).toFixed(1)+'%'}</div>
+      </div>
+      <div class="ticker-item">
+        <div class="ticker-label">Credit Card Owed</div>
+        <div class="ticker-value ${latest && latest.creditCard>0 ? 'down':''}">${latest ? fmtMoneyShort(latest.creditCard||0) : '—'}</div>
       </div>
     </div>`;
 
@@ -416,15 +449,13 @@ function renderDashboard(){
     </div>
 
     <div class="card">
-      <div class="card-head">
-        <div class="card-title">Quick Add Net Worth Snapshot</div>
-      </div>
-      <button class="btn btn-block" id="quickSnapBtn">Log Today's Balances</button>
+      <div class="card-head"><div class="card-title">Quick Add</div></div>
+      <button class="btn btn-block" id="quickSnapBtn">Log Today's Net Worth Snapshot</button>
     </div>
   `;
   document.getElementById('app').innerHTML = html;
   document.getElementById('viewAllExp').addEventListener('click', ()=>{ state.tab='expenses'; render(); });
-  document.getElementById('quickSnapBtn').addEventListener('click', openSnapshotModal);
+  document.getElementById('quickSnapBtn').addEventListener('click', ()=>openSnapshotModal());
 }
 
 /* ================= EXPENSES ================= */
@@ -438,10 +469,7 @@ function renderExpenses(){
   txns.sort((a,b)=>b.date.localeCompare(a.date));
 
   const groups = {};
-  txns.forEach(t=>{
-    const k = monthKey(t.date);
-    (groups[k] = groups[k]||[]).push(t);
-  });
+  txns.forEach(t=>{ const k = monthKey(t.date); (groups[k] = groups[k]||[]).push(t); });
   const groupKeys = Object.keys(groups).sort().reverse();
 
   const filterBar = `
@@ -500,14 +528,12 @@ function renderAnalytics(){
 
   const monthTotals = months.map(m=>monthTotal(m));
 
-  // category breakdown for selected month
   const selTxns = txnsForMonth(state.analyticsMonth);
   const catTotals = {};
   selTxns.forEach(t=>{ catTotals[t.category] = (catTotals[t.category]||0) + Number(t.amount); });
   const catEntries = Object.entries(catTotals).sort((a,b)=>b[1]-a[1]);
   const maxCat = catEntries.length ? catEntries[0][1] : 0;
 
-  // MoM % change per category
   const prevDate = new Date(state.analyticsMonth+'-01'); prevDate.setMonth(prevDate.getMonth()-1);
   const prevKey = monthKey(prevDate);
   const prevTxns = txnsForMonth(prevKey);
@@ -527,9 +553,8 @@ function renderAnalytics(){
           ${months.map(m=>`<option value="${m}" ${state.analyticsMonth===m?'selected':''}>${monthLabel(m)}</option>`).join('')}
         </select>
       </div>
-      ${catEntries.length===0 ? `<div class="empty"><div class="empty-sub">No expenses this month.</div></div>` : `
-      <div class="chart-wrap" style="height:200px;"><canvas id="catChart"></canvas></div>
-      `}
+      ${catEntries.length===0 ? `<div class="empty"><div class="empty-sub">No expenses this month.</div></div>` :
+        `<div class="chart-wrap" style="height:200px;"><canvas id="catChart"></canvas></div>`}
     </div>
 
     <div class="card">
@@ -563,7 +588,6 @@ function renderAnalytics(){
     state.analyticsMonth = e.target.value; renderAnalytics();
   });
 
-  // trend chart
   if(state.chart1) state.chart1.destroy();
   const ctx1 = document.getElementById('trendChart').getContext('2d');
   state.chart1 = new Chart(ctx1, {
@@ -607,20 +631,15 @@ function renderAnalytics(){
 
 /* ================= NET WORTH ================= */
 function renderNetWorth(){
-  const snaps = state.data.snapshots.slice().sort((a,b)=>a.date.localeCompare(b.date));
+  const snaps = sortedSnapshots();
   const latest = snaps.length ? snaps[snaps.length-1] : null;
 
   document.getElementById('app').innerHTML = `
     <div class="card">
       <div class="card-title">Current Net Worth</div>
       <div class="big-num">${latest ? fmtMoney(snapTotal(latest)) : '$0.00'}</div>
+      <div class="card-note">Stocks + Savings + Roth IRA − Credit Card balance</div>
       <div class="sub-num">${latest ? 'as of '+latest.date : 'log your first snapshot below'}</div>
-    </div>
-
-    <div class="card">
-      <div class="card-title" style="margin-bottom:10px;">Net Worth Over Time</div>
-      ${snaps.length<2 ? `<div class="empty"><div class="empty-sub">Add at least 2 snapshots to see a trend.</div></div>` :
-        `<div class="chart-wrap"><canvas id="nwChart"></canvas></div>`}
     </div>
 
     <div class="card">
@@ -629,48 +648,149 @@ function renderNetWorth(){
     </div>
 
     <div class="card">
-      <div class="card-title" style="margin-bottom:6px;">History</div>
+      <div class="card-title" style="margin-bottom:4px;">Net Worth Trend</div>
+      <div class="card-note" style="margin-bottom:6px;">Dashed line shows your overall trajectory (linear trend) across all snapshots.</div>
+      ${snaps.length<2 ? `<div class="empty"><div class="empty-sub">Add at least 2 snapshots to see a trend.</div></div>` :
+        `<div class="chart-wrap"><canvas id="nwTrendChart"></canvas></div>
+         <div class="legend-row">
+           <div class="legend-item"><span class="legend-swatch line" style="background:#4C8DFF;"></span>Net worth</div>
+           <div class="legend-item"><span class="legend-swatch dashed"></span>Trendline</div>
+         </div>`}
+    </div>
+
+    ${snaps.length>=1 ? `
+    <div class="card">
+      <div class="card-title" style="margin-bottom:4px;">Assets vs. Credit Card Balance</div>
+      <div class="card-note" style="margin-bottom:6px;">How each account has moved, including what you owe.</div>
+      <div class="chart-wrap"><canvas id="nwBreakdownChart"></canvas></div>
+    </div>` : ''}
+
+    ${months12WithData().length>=2 ? `
+    <div class="card">
+      <div class="card-title" style="margin-bottom:4px;">Spending vs. Net Worth</div>
+      <div class="card-note" style="margin-bottom:6px;">Bars are monthly spending; the line is your net worth at each month's end — see how they move together.</div>
+      <div class="chart-wrap"><canvas id="correlationChart"></canvas></div>
+    </div>` : ''}
+
+    <div class="card">
+      <div class="card-title" style="margin-bottom:10px;">History</div>
       ${snaps.length===0 ? `<div class="empty"><div class="empty-sub">No snapshots yet.</div></div>` :
-        snaps.slice().reverse().map(s=>`
-          <div class="snap-row" data-id="${s.id}">
-            <div>
+        snaps.slice().reverse().map((s,idx,arr)=>{
+          const prior = arr[idx+1]; // next in reversed array = chronologically before
+          const total = snapTotal(s);
+          const priorTotal = prior ? snapTotal(prior) : null;
+          const diff = priorTotal!==null ? total-priorTotal : null;
+          const diffPct = (priorTotal!==null && priorTotal!==0) ? (diff/Math.abs(priorTotal)*100) : null;
+          return `
+          <div class="snap-card" data-id="${s.id}">
+            <div class="snap-top">
               <div class="snap-date">${s.date}</div>
-              <div class="sub-num" style="margin-top:2px;">Stocks ${fmtMoneyShort(s.stockPortfolio)} · Savings ${fmtMoneyShort(s.savings)} · Roth ${fmtMoneyShort(s.rothIRA)} · Checking ${fmtMoneyShort(s.checking)}</div>
+              <div class="snap-total">${fmtMoney(total)}</div>
             </div>
-            <div class="snap-total">${fmtMoneyShort(snapTotal(s))}</div>
-          </div>`).join('')}
+            ${diff!==null ? `<div class="snap-delta ${diff>=0?'up':'down'}">${diff>=0?'▲':'▼'} ${fmtMoney(Math.abs(diff))} (${diffPct!==null?Math.abs(diffPct).toFixed(1)+'%':'—'}) since ${prior.date}</div>` : `<div class="snap-delta" style="color:var(--muted);">First recorded snapshot</div>`}
+            <div class="snap-breakdown">
+              <div class="snap-line">Stocks <b>${fmtMoneyShort(s.stockPortfolio)}</b></div>
+              <div class="snap-line">Savings <b>${fmtMoneyShort(s.savings)}</b></div>
+              <div class="snap-line">Roth IRA <b>${fmtMoneyShort(s.rothIRA)}</b></div>
+              <div class="snap-line">Credit Card <b style="color:${s.creditCard>0?'var(--accent-red)':'inherit'}">${s.creditCard>0?'-':''}${fmtMoneyShort(s.creditCard)}</b></div>
+            </div>
+          </div>`;
+        }).join('')}
     </div>
   `;
-  document.getElementById('addSnapBtn').addEventListener('click', openSnapshotModal);
-  document.querySelectorAll('.snap-row').forEach(el=>{
+  document.getElementById('addSnapBtn').addEventListener('click', ()=>openSnapshotModal());
+  document.querySelectorAll('.snap-card').forEach(el=>{
     el.addEventListener('click', ()=> openSnapshotModal(el.dataset.id));
   });
 
   if(snaps.length>=2){
+    const points = snaps.map(s=>({ x: new Date(s.date).getTime(), y: snapTotal(s) }));
+    const {slope, intercept} = linearRegression(points);
+    const trendVals = points.map(p => slope*p.x + intercept);
+
+    if(state.chart1) state.chart1.destroy?.();
     if(state.chart3) state.chart3.destroy();
-    const ctx3 = document.getElementById('nwChart').getContext('2d');
+    const ctx3 = document.getElementById('nwTrendChart').getContext('2d');
     state.chart3 = new Chart(ctx3, {
       type:'line',
       data:{
         labels: snaps.map(s=>s.date),
         datasets:[
-          {label:'Stocks', data:snaps.map(s=>s.stockPortfolio), borderColor:'#4C8DFF', backgroundColor:'rgba(76,141,255,0.25)', fill:true, tension:0.3, pointRadius:2},
-          {label:'Savings', data:snaps.map(s=>s.savings), borderColor:'#35D399', backgroundColor:'rgba(53,211,153,0.25)', fill:true, tension:0.3, pointRadius:2},
-          {label:'Roth IRA', data:snaps.map(s=>s.rothIRA), borderColor:'#F0B429', backgroundColor:'rgba(240,180,41,0.25)', fill:true, tension:0.3, pointRadius:2},
-          {label:'Checking', data:snaps.map(s=>s.checking), borderColor:'#B388FF', backgroundColor:'rgba(179,136,255,0.25)', fill:true, tension:0.3, pointRadius:2},
+          {label:'Net Worth', data: snaps.map(s=>snapTotal(s)), borderColor:'#4C8DFF', backgroundColor:'rgba(76,141,255,0.15)', fill:true, tension:0.3, pointRadius:3},
+          {label:'Trendline', data: trendVals, borderColor:'#8A93A3', borderDash:[5,4], pointRadius:0, fill:false, tension:0}
+        ]
+      },
+      options:{
+        plugins:{ legend:{display:false}, tooltip:{callbacks:{label:(c)=>c.dataset.label+': '+fmtMoney(c.parsed.y)}} },
+        scales:{
+          x:{ticks:{color:'#8A93A3', font:{size:9}}, grid:{display:false}},
+          y:{ticks:{color:'#8A93A3', font:{size:10}, callback:v=>fmtMoneyShort(v)}, grid:{color:'#232A35'}}
+        },
+        maintainAspectRatio:false
+      }
+    });
+  }
+
+  if(snaps.length>=1){
+    if(state.chart4) state.chart4.destroy();
+    const ctx4 = document.getElementById('nwBreakdownChart').getContext('2d');
+    state.chart4 = new Chart(ctx4, {
+      type:'line',
+      data:{
+        labels: snaps.map(s=>s.date),
+        datasets:[
+          {label:'Stocks', data:snaps.map(s=>s.stockPortfolio), borderColor:'#4C8DFF', backgroundColor:'rgba(76,141,255,0.12)', fill:true, tension:0.3, pointRadius:2},
+          {label:'Savings', data:snaps.map(s=>s.savings), borderColor:'#35D399', backgroundColor:'rgba(53,211,153,0.12)', fill:true, tension:0.3, pointRadius:2},
+          {label:'Roth IRA', data:snaps.map(s=>s.rothIRA), borderColor:'#F0B429', backgroundColor:'rgba(240,180,41,0.12)', fill:true, tension:0.3, pointRadius:2},
+          {label:'Credit Card (owed)', data:snaps.map(s=>s.creditCard), borderColor:'#FF6B6B', backgroundColor:'rgba(255,107,107,0.12)', fill:true, tension:0.3, pointRadius:2, borderDash:[4,3]},
         ]
       },
       options:{
         plugins:{ legend:{ position:'top', labels:{ color:'#E7ECF2', boxWidth:10, font:{size:10} } },
           tooltip:{callbacks:{label:(c)=>c.dataset.label+': '+fmtMoney(c.parsed.y)}} },
         scales:{
-          x:{stacked:true, ticks:{color:'#8A93A3', font:{size:9}}, grid:{display:false}},
-          y:{stacked:true, ticks:{color:'#8A93A3', font:{size:10}, callback:v=>fmtMoneyShort(v)}, grid:{color:'#232A35'}}
+          x:{ticks:{color:'#8A93A3', font:{size:9}}, grid:{display:false}},
+          y:{ticks:{color:'#8A93A3', font:{size:10}, callback:v=>fmtMoneyShort(v)}, grid:{color:'#232A35'}}
         },
         maintainAspectRatio:false
       }
     });
   }
+
+  const corrMonths = months12WithData();
+  if(corrMonths.length>=2){
+    const spend = corrMonths.map(m=>monthTotal(m));
+    const nwEnd = corrMonths.map(m=>{
+      const [y,mo] = m.split('-');
+      const monthEnd = new Date(y, mo, 0).toISOString().slice(0,10);
+      return netWorthAsOf(monthEnd);
+    });
+    const chart5ctx = document.getElementById('correlationChart').getContext('2d');
+    if(state.chart5) state.chart5.destroy();
+    state.chart5 = new Chart(chart5ctx, {
+      data:{
+        labels: corrMonths.map(m=>monthLabel(m).replace(' ','\n')),
+        datasets:[
+          {type:'bar', label:'Monthly Spend', data:spend, backgroundColor:'rgba(255,107,107,0.55)', yAxisID:'y', borderRadius:4, maxBarThickness:26},
+          {type:'line', label:'Net Worth', data:nwEnd, borderColor:'#35D399', backgroundColor:'#35D399', yAxisID:'y1', tension:0.3, pointRadius:3, spanGaps:true},
+        ]
+      },
+      options:{
+        plugins:{ legend:{ position:'top', labels:{ color:'#E7ECF2', boxWidth:10, font:{size:10} } },
+          tooltip:{callbacks:{label:(c)=>c.dataset.label+': '+fmtMoney(c.parsed.y)}} },
+        scales:{
+          x:{ticks:{color:'#8A93A3', font:{size:9}}, grid:{display:false}},
+          y:{position:'left', ticks:{color:'#FF6B6B', font:{size:10}, callback:v=>fmtMoneyShort(v)}, grid:{color:'#232A35'}},
+          y1:{position:'right', ticks:{color:'#35D399', font:{size:10}, callback:v=>fmtMoneyShort(v)}, grid:{display:false}}
+        },
+        maintainAspectRatio:false
+      }
+    });
+  }
+}
+
+function months12WithData(){
+  return lastNMonthKeys(12).filter(m => txnsForMonth(m).length>0);
 }
 
 /* ================= SETTINGS ================= */
@@ -726,6 +846,7 @@ function renderSettings(){
         if(imported.transactions && imported.snapshots){
           state.data = imported;
           if(!state.data.categories) state.data.categories = DEFAULT_CATEGORIES.slice();
+          state.data.snapshots.forEach(s=>{ if(s.creditCard===undefined) s.creditCard = 0; delete s.checking; });
           saveData();
           showToast('Data imported successfully');
           render();
@@ -856,8 +977,9 @@ function openSnapshotModal(id){
           <input type="number" step="0.01" id="snapRoth" placeholder="0.00" value="${editing?editing.rothIRA:''}">
         </div>
         <div class="field">
-          <label>Checking Account</label>
-          <input type="number" step="0.01" id="snapChecking" placeholder="0.00" value="${editing?editing.checking:''}">
+          <label>Credit Card Balance</label>
+          <input type="number" step="0.01" id="snapCredit" placeholder="0.00" value="${editing?editing.creditCard:''}">
+          <div class="hint">What you currently owe — this is subtracted from your net worth.</div>
         </div>
         <button class="btn btn-block" id="saveSnapBtn">${editing?'Save Changes':'Save Snapshot'}</button>
         ${editing ? `<button class="btn-danger btn-block" id="deleteSnapBtn" style="margin-top:10px; padding:11px;">Delete</button>` : ''}
@@ -871,11 +993,11 @@ function openSnapshotModal(id){
     const stockPortfolio = parseFloat(document.getElementById('snapStocks').value)||0;
     const savings = parseFloat(document.getElementById('snapSavings').value)||0;
     const rothIRA = parseFloat(document.getElementById('snapRoth').value)||0;
-    const checking = parseFloat(document.getElementById('snapChecking').value)||0;
+    const creditCard = parseFloat(document.getElementById('snapCredit').value)||0;
     if(editing){
-      Object.assign(editing, {date, stockPortfolio, savings, rothIRA, checking});
+      Object.assign(editing, {date, stockPortfolio, savings, rothIRA, creditCard});
     } else {
-      state.data.snapshots.push({ id: uid(), date, stockPortfolio, savings, rothIRA, checking });
+      state.data.snapshots.push({ id: uid(), date, stockPortfolio, savings, rothIRA, creditCard });
     }
     saveData(); closeModal(); showToast(editing?'Snapshot updated':'Snapshot saved'); render();
   });
@@ -885,10 +1007,6 @@ function openSnapshotModal(id){
       saveData(); closeModal(); showToast('Snapshot deleted'); render();
     });
   }
-}
-
-function escapeHtml(s){
-  return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
 /* ================= ROUTER ================= */
